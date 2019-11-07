@@ -1,15 +1,30 @@
 {
-  "name": "moicode",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "9.1.2",
-    "react": "16.11.0",
-    "react-dom": "16.11.0"
-  }
+	"name": "moicode",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "nodemon moicodeapi/src/index.js",
+		"dev:next": "next dev",
+		"build": "next build",
+		"start": "node moicodeapi/src/index.js"
+	},
+	"dependencies": {
+		"@babel/polyfill": "^7.4.4",
+		"@zeit/next-css": "^1.0.1",
+		"body-parser": "^1.19.0",
+		"next": "9.1.2",
+		"next-offline": "^5.0.0-beta.8",
+		"react": "16.11.0",
+		"react-dom": "16.11.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.4.4",
+		"@babel/core": "^7.0.0",
+		"@babel/node": "^7.4.5",
+		"@babel/plugin-proposal-do-expressions": "7.0.0-rc.1",
+		"@babel/preset-env": "^7.4.5",
+		"cross-env": "^5.2.0",
+		"nodemon": "^1.19.0",
+		"yarn": "^1.16.0"
+	}
 }

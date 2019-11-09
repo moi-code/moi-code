@@ -3,10 +3,10 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"dev": "nodemon src/moicodeapi/src/index.js",
+		"dev": "nodemon src/moi-code-api/src/index.js",
 		"dev:next": "next dev",
 		"build": "next build",
-		"start": "node src/moicodeapi/src/index.js"
+		"start": "node src/moi-code-api/src/index.js"
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.4.4",

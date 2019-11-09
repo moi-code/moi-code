@@ -1,8 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../public/index.css'
+
 import Layout from '../src/components/Layout';
 class MoiCode extends App {
 	render() {

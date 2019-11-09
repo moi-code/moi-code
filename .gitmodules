@@ -1,2 +1,3 @@
-[submodule "moicodeapi"]
-	url = https://github.com/moi-code/moi-code-api.git
+[submodule "src/moicodeapi"]
+	path = src/moicodeapi
+	url = = https://github.com/moi-code/moi-code-api.git

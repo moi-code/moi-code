@@ -6,8 +6,8 @@
 		"dev": "nodemon src/moi-code-api/src/index.js",
 		"dev:next": "next dev",
 		"build": "next build",
-		"start": "node src/moi-code-api/src/index.js",
-		"heroku-postbuild": "npm build"
+		"start": "node src/moi-code-api/src/index.js"
+
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.4.4",

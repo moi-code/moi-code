@@ -7,7 +7,7 @@
 		"dev:next": "next dev",
 		"build": "next build",
 		"start": "node src/moi-code-api/src/index.js -p $PORT",
-		"heroku-postbuild": "npm run build && npm start"
+		"heroku-postbuild": "npm start"
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.4.4",

@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "nodemon src/moi-code-api/src/index.js",
 		"dev:next": "next dev",
-		"start": "node src/moi-code-api/src/index.js"
+		"start": "node src/moi-code-api/src/index.js",
+		"heroku-postinstall":"npm start"
 
 	},
 	"dependencies": {

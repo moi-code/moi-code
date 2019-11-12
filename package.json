@@ -6,7 +6,6 @@
 	"scripts": {
 		"dev": "nodemon src/moi-code-api/src/index.js",
 		"dev:next": "next dev",
-		"build": "next build",
 		"start": "node src/moi-code-api/src/index.js"
 
 	},

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../src/components/Header'
 export default class extends Component {
-	static getInitialProps() {
+	static async getInitialProps() {
 		const isServer = typeof window === 'undefined';
 		return { isServer };
 	}

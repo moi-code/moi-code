@@ -1,31 +1,72 @@
 import React, { Component } from 'react';
-import { toUnicode } from 'punycode';
+import Axios from 'axios';
 
 export default class extends Component {
-	static getInitialProps({ query }) {
-		const {
-			login,
-			avatarUrl,
-			bio,
-			isHireable,
-			isBountyHunter,
-			organizations,
-			starredRepositories,
-			watching
-		} = query.githubData;
-		return {
-			login: login,
-			avatarUrl: avatarUrl,
-			bio: bio,
-			isHireable: isHireable,
-			isBountyHunter: isBountyHunter,
-			organizations: organizations,
-			starredRepositories: starredRepositories,
-			watching: watching
+	static async getInitialProps({ req }) {
+		var config = {
+			headers: { Authorization: 'bearer ' + process.env.GITHUB_TOKEN }
 		};
+		const q = `{
+  viewer {
+    login
+    avatarUrl
+    bio
+    isHireable
+    isBountyHunter
+    organizations(last: 4) {
+      edges {
+        node {
+          name
+          url
+        }
+      }
+    }
+    starredRepositories(last: 3) {
+      edges {
+        node {
+          name
+          description
+          url
+        }
+      }
+    }
+    watching(last: 3) {
+      edges {
+        node {
+          name
+          description
+          url
+        }
+      }
+    }
+  }
+}
+
+`;
+		const v = `{
+    }
+		`;
+		let resp;
+		Axios.post(
+			'https://api.github.com/graphql',
+			{ query: q, variables: v },
+			config
+		)
+			.then(resp => {
+				const queryParams = {
+					githubData: resp.data.data.viewer
+				};
+
+				return queryParams;
+			})
+			.catch(err => {
+				console.log('Error:', err);
+			});
 	}
 
 	render() {
+		const { queryParams } = this.props;
+
 		const {
 			login,
 			avatarUrl,
@@ -35,7 +76,7 @@ export default class extends Component {
 			organizations,
 			starredRepositories,
 			watching
-		} = this.props;
+		} = queryParams.githubData;
 		return (
 			<div className='container mx-auto'>
 				<h1>Github Profile</h1>
@@ -56,7 +97,7 @@ export default class extends Component {
 				<p>{bio}</p>
 				<p>Hireable: {isHireable.toString().toUpperCase()}</p>
 				<div className='d-flex flex-column flex-md-row mt-5 justify-content-center align-items-center'>
-					<p className='col-md d-flex flex-column align-items-center'>
+					<div className='col-md d-flex flex-column align-items-center'>
 						<h6>My Organizations</h6>
 						<ul>
 							{organizations.edges.map((org, i) => (
@@ -65,8 +106,8 @@ export default class extends Component {
 								</li>
 							))}
 						</ul>
-					</p>
-					<p className='col-md d-flex flex-column align-items-center'>
+					</div>
+					<div className='col-md d-flex flex-column align-items-center'>
 						<h6>Recently Starred</h6>
 						<ul>
 							{starredRepositories.edges.map((star, i) => (
@@ -75,8 +116,8 @@ export default class extends Component {
 								</li>
 							))}
 						</ul>
-					</p>
-					<p className='col-md d-flex flex-column align-items-center'>
+					</div>
+					<div className='col-md d-flex flex-column align-items-center'>
 						<h6>Latest Watched</h6>
 						<ul>
 							{watching.edges.map((watch, i) => (
@@ -85,7 +126,7 @@ export default class extends Component {
 								</li>
 							))}
 						</ul>
-					</p>
+					</div>
 				</div>
 			</div>
 		);

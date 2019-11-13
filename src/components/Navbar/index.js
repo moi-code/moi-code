@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import fetch from "isomorphic-unfetch";
 const buttonClick = e => {
   e.preventDefault();
   document.querySelector(".collapse").classList.contains("show")
@@ -16,7 +17,7 @@ const isActive = () => {
     }
   });
 };
-const Nav = () => (
+const Nav = ({en,author}) => (
   <span>
     <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light">
       <Link href="/">
@@ -55,11 +56,19 @@ const Nav = () => (
           </li>
         </ul>
         <span className="navbar-text">
-          {"<"}Where Moi Happens{">"}
+          {"<"}{en}{">"}
         </span>
       </div>
     </nav>
   </span>
 );
+Nav.getInitialProps = async ({ req }) => {
+  const res = await fetch(
+    "https://programming-quotes-api.herokuapp.com/quotes/random/lang/en"
+  );
+  const json = await res.json();
+  console.log(json);
+  return { en: json.en, author: json.author };
+};
 
 export default Nav;

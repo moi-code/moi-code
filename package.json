@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "nodemon src/api",
 		"dev:next": "next dev",
-		"start": "yarn && node src/api"
+		"start": "node src/api"
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.4.4",

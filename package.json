@@ -27,11 +27,6 @@
 		"socket.io": "^2.3.0"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.4.4",
-		"@babel/core": "^7.0.0",
-		"@babel/node": "^7.4.5",
-		"@babel/plugin-proposal-do-expressions": "7.0.0-rc.1",
-		"@babel/preset-env": "^7.4.5",
 		"cross-env": "^5.2.0",
 		"nodemon": "^1.19.0",
 		"yarn": ">=1.16.0"

@@ -1,0 +1,21 @@
+{
+  "name": "Moi Code",
+  "short_name": "Moi Code",
+  "icons": [
+    {
+      "src": "/public/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/public/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#FFFFFF",
+  "description": "A Hub of Creation",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#000"
+}

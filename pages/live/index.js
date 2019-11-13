@@ -26,7 +26,7 @@ class Live extends Component {
     return (
       <div className="h-100 d-flex flex-column justify-content my-3">
         <div className="h-100 p-3">
-          <h1>Moi Live</h1>
+          <h1 title='Try this /live/:enter-your-favorite-streamer'>Moi Live</h1>
           <div
             id={this.props.targetID}
             className="h-100"

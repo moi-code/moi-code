@@ -8,19 +8,42 @@ module.exports = (app, server) => {
     }),
     send: ({ data, res }) => res.send(data)
   });
-
   /**
    * Gets Live Data Using API
    */
-  const queryParams = {
-    targetID: "twitch-embed",
-    width: "100%",
-    height: "80%",
-    channel: "moikune",
-    theme: "dark",
-    autoplay: false
-  };
+  server.get("/live/:streamer", (req, res) => {
+    const queryParams = {
+      targetID: "twitch-embed",
+      width: "100%",
+      height: "80%",
+      channel: req.params.streamer,
+      theme: "dark",
+      autoplay: false
+    };
+    return ssrCache({
+      req,
+      res,
+      pagePath: "/live",
+      queryParams
+    });
+  });
+  /**
+   * Gets Live Data Using API
+   */
   server.get("/live", (req, res) => {
-    return ssrCache({ req, res, pagePath: "/live", queryParams });
+    const queryParams = {
+      targetID: "twitch-embed",
+      width: "100%",
+      height: "80%",
+      channel: "moikune",
+      theme: "dark",
+      autoplay: false
+    };
+    return ssrCache({
+      req,
+      res,
+      pagePath: "/live",
+      queryParams
+    });
   });
 };

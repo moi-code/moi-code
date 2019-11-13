@@ -55,7 +55,7 @@ const Nav = () => (
           </li>
         </ul>
         <span className="navbar-text">
-          {"<"}Where Creation Happens{">"}
+          {"<"}Where Moi Happens{">"}
         </span>
       </div>
     </nav>

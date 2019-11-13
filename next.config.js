@@ -4,11 +4,10 @@ const withCSS = require('@zeit/next-css');
 
 const nextConfig = withCSS({
 	target: 'server',
-	useFileSystemPublicRoutes: false,
 	transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
 	// Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
 	// turn on the SW in dev mode so that we can actually test it
-	generateInDevMode: false,
+	generateInDevMode: true,
 	workboxOpts: {
 		swDest: 'public/service-worker.js',
 		runtimeCaching: [
@@ -16,7 +15,7 @@ const nextConfig = withCSS({
 				urlPattern: /^https?.*/,
 				handler: 'NetworkFirst',
 				options: {
-					cacheName: 'https-calls',
+					cacheName: 'moi-code-cache',
 					networkTimeoutSeconds: 15,
 					expiration: {
 						maxEntries: 150,

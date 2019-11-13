@@ -2,12 +2,12 @@
 	"name": "moicode",
 	"version": "0.0.0",
 	"private": true,
-	"main": " src/api/src/index.js",
+	"main": " src/api",
 	"scripts": {
-		"dev": "nodemon src/moi-code-api/src/index.js",
+		"dev": "nodemon src/api",
 		"dev:next": "next dev",
-		"start": "node src/api/src/index.js",
-		"heroku-postbuild": "npm start"
+		"start": "node src/api",
+		"heroku-postbuild": "npm install"
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.4.4",

@@ -34,7 +34,7 @@
   "devDependencies": {
     "cross-env": "^5.2.0",
     "nodemon": "^1.19.0",
-    "yarn": ">=1.16.0",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "yarn": ">=1.16.0"
   }
 }

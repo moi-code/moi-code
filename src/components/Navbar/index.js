@@ -55,8 +55,8 @@ const Nav = ({en,author}) => (
             </a>
           </li>
         </ul>
-        <span className="navbar-text">
-          {"<"}{en}{">"}
+        <span className="navbar-text text-capitalize">
+          {"<"}Where Creation Happens{">"}
         </span>
       </div>
     </nav>

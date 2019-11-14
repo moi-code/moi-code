@@ -5,8 +5,10 @@ import { Provider } from "react-redux";
 import Navbar from "../src/components/Navbar";
 import Layout from "../src/components/Layout";
 import store  from "../src/store.js";
-
 class MoiCode extends App {
+  componentDidMount(){
+    require('../src/firebase')
+  }
   render() {
     const { Component, pageProps } = this.props;
     return (

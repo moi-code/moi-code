@@ -1,5 +1,7 @@
-import { combineReducers } from "redux";
-import generalReducer from "./GeneralReducer";
+import { combineReducers } from 'redux';
+import generalReducer from './GeneralReducer';
+import AuthReducer from './AuthReducer';
 export default combineReducers({
-  general: generalReducer
+  generalReducer,
+  AuthReducer
 });

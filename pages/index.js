@@ -12,7 +12,7 @@ export default class extends Component {
   }
 
   render() {
-    const { en, author } = this.props;
+    const { en, author, isServer } = this.props;
     return (
       <div className="h-100 d-flex flex-column justify-content-center align-items-center">
         <Header>
@@ -28,7 +28,7 @@ export default class extends Component {
           title="Using NextJS and Express for SSR Optimization."
         >
           <br />
-          <strong>{this.props.isServer ? "Server" : "Client"} side</strong>.
+          <strong>{isServer ? "Server" : "Client"} side</strong>.
         </p>
       </div>
     );

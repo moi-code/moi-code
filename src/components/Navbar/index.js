@@ -62,13 +62,5 @@ const Nav = ({en,author}) => (
     </nav>
   </span>
 );
-Nav.getInitialProps = async ({ req }) => {
-  const res = await fetch(
-    "https://programming-quotes-api.herokuapp.com/quotes/random/lang/en"
-  );
-  const json = await res.json();
-  console.log(json);
-  return { en: json.en, author: json.author };
-};
 
 export default Nav;

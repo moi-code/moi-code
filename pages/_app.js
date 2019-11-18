@@ -2,13 +2,11 @@ import React from "react";
 import App from "next/app";
 import Head from "next/head";
 import { Provider } from "react-redux";
-import Navbar from "../src/components/Navbar";
+
 import Layout from "../src/components/Layout";
-import store  from "../src/store.js";
+import store from "../src/store";
 class MoiCode extends App {
-  componentDidMount(){
-    require('../src/firebase')
-  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -25,5 +23,4 @@ class MoiCode extends App {
     );
   }
 }
-
-export default MoiCode;
+export default MoiCode

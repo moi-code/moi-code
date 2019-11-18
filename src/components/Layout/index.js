@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React, { Component } from "react";
 import Navbar from "../Navbar";
 import firebase from "../../../public/firebase/firebase.client";
@@ -8,6 +9,7 @@ import "../../../public/fonts.css";
 import "jquery/dist/jquery.min";
 import { connect } from "react-redux";
 import { IsAuthed } from "../../actions/AuthActions";
+import Axios from "axios";
 class Layout extends Component {
   componentDidMount() {
     const { auth, IsAuthed } = this.props;
@@ -22,10 +24,14 @@ class Layout extends Component {
         var uid = user.uid;
         var providerData = user.providerData;
         // ...
-        IsAuthed(true);
+				IsAuthed(true);
       } else {
         // User is signed out.
         // ...
+        if (window.location.pathname.includes("dashboard"))
+          Router.push({
+            pathname: "/login"
+          });
       }
     });
   }
@@ -34,7 +40,7 @@ class Layout extends Component {
     return (
       <div className="h-100">
         <Navbar />
-        <div className="layout container-fluid">{children}</div>
+        <div className="layout container-fluid h-100">{children}</div>
       </div>
     );
   }

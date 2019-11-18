@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const EMBED_URL = "https://embed.twitch.tv/embed/v1.js";
 class Live extends Component {
-  static getInitialProps({ query }) {
+  static async getInitialProps({ query }) {
     const isServer = typeof window === "undefined";
 
     return {
@@ -21,16 +21,21 @@ class Live extends Component {
       embed = new window.Twitch.Embed(this.props.targetID, { ...this.props });
     });
     document.body.appendChild(script);
+    () => {
+      console.log("activate");
+      if (document.querySelectorAll(`${this.props.targetId} iframe`).length > 1)
+        document.querySelectorAll(`${this.props.targetId} iframe`).pop();
+
+      console.log(this.props.targetID);
+    };
   }
   render() {
     return (
       <div className="h-100 d-flex flex-column justify-content my-3">
+        {}
         <div className="h-100 p-3">
-          <h1 title='Try this /live/:enter-your-favorite-streamer'>Moi Live</h1>
-          <div
-            id={this.props.targetID}
-            className="h-100"
-          ></div>
+          <h1 title="Try this /live/:enter-your-favorite-streamer">Moi Live</h1>
+          <div id={this.props.targetID} className="h-100"></div>
         </div>
       </div>
     );

@@ -12,6 +12,7 @@ module.exports = (app, server) => {
    * Gets Live Data Using API
    */
   server.get("/live/:streamer", (req, res) => {
+    console.log("streamer", req.params.streamer);
     const queryParams = {
       targetID: "twitch-embed",
       width: "100%",

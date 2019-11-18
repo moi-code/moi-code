@@ -8,35 +8,16 @@ import "../../../public/fonts.css";
 // import "../../../public/bootstrap.bundle";
 import "jquery/dist/jquery.min";
 import { connect } from "react-redux";
-import { IsAuthed } from "../../actions/AuthActions";
-import Axios from "axios";
+import { isAuthed } from "../../actions";
 class Layout extends Component {
-  componentDidMount() {
-    const { auth, IsAuthed } = this.props;
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-				IsAuthed(true);
-      } else {
-        // User is signed out.
-        // ...
-        if (window.location.pathname.includes("dashboard"))
-          Router.push({
-            pathname: "/login"
-          });
-      }
-    });
+  constructor(props) {
+    super(props);
+    console.log(props.authed);
+
   }
   render() {
     const { children } = this.props;
+
     return (
       <div className="h-100">
         <Navbar />
@@ -47,6 +28,6 @@ class Layout extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.AuthReducer.auth
+  authed: state.AuthReducer.authed
 });
-export default connect(mapStateToProps, { IsAuthed })(Layout);
+export default connect(mapStateToProps, { isAuthed })(Layout);

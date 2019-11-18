@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import fetch from "isomorphic-unfetch";
+import { connect } from "react-redux";
 const buttonClick = e => {
   e.preventDefault();
   document.querySelector(".collapse").classList.contains("show")
@@ -17,7 +17,17 @@ const isActive = () => {
     }
   });
 };
-const Nav = ({en,author}) => (
+const dashboardNav = auth => {
+  if (auth)
+    return (
+      <li onClick={isActive} className="nav-item">
+        <a className="nav-link" href="/dashboard">
+          Dashboard
+        </a>
+      </li>
+    );
+};
+const Nav = ({ authed }) => (
   <span>
     <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light">
       <Link href="/">
@@ -54,6 +64,7 @@ const Nav = ({en,author}) => (
               Live
             </a>
           </li>
+          {dashboardNav(authed)}
         </ul>
         <span className="navbar-text text-capitalize">
           {"<"}Where Creation Happens{">"}
@@ -62,5 +73,7 @@ const Nav = ({en,author}) => (
     </nav>
   </span>
 );
-
-export default Nav;
+const mapStateToProps = state => ({
+  authed: state.AuthReducer.authed
+});
+export default connect(mapStateToProps)(Nav);

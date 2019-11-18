@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../src/components/Header";
+import fetch from "isomorphic-unfetch";
 export default class extends Component {
   static async getInitialProps({ req }) {
     const isServer = typeof window === "undefined";

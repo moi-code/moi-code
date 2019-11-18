@@ -21,5 +21,7 @@ body > div {
 }
 .layout{
   height: calc(100% - 7rem);
-  
+}
+.twitch-embed iframe:nth-child(2){
+  display:none !important
 }

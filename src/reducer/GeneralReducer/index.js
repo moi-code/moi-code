@@ -1,5 +1,5 @@
 const initialState = {
-  quote: {}
+  value: {}
 };
 
 export default (state = initialState, action) => {

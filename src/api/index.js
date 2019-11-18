@@ -1,9 +1,10 @@
 require('@babel/polyfill');
-const dotenv = require('dotenv');
+const dotenv = require("dotenv").config();
 const express = require('express');
 const next = require('next');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
 const dev = process.env.NODE_ENV !== 'production';
 let app;
 
@@ -13,7 +14,8 @@ if (process.env.NODE_ENV !== 'backend') {
 	const handle = app.getRequestHandler();
 	let server = express();
 
-	dotenv.config();
+
+	dotenv;
 	app.prepare().then(() => {
 		server.use(
 			bodyParser.urlencoded({

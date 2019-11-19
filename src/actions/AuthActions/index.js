@@ -1,74 +1,62 @@
 import types from "../types";
-
 import firebase from "../../../public/firebase/firebase.client";
 import "firebase/auth";
+import Router from "next/router";
 
 const {
-  SET_LOGIN_TEXT,
+  AUTHORIZED,
+  HANDLE_USER_DATA,
+  CLEAR_GEN_STATE,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL,
-  IS_AUTHED
+  LOGIN_USER_FAIL
 } = types;
-
-export const loginTextChange = payload => dispatch => {
-  dispatch({
-    type: SET_LOGIN_TEXT,
-    payload
-  });
-};
-export const isAuthed = payload => dispatch => {
-  console.log("checking auth...");
-  dispatch({
-    type: IS_AUTHED,
-    payload
-  });
-};
 export const registerUser = () => dispatch => {};
 export const userLogin = (email, password) => dispatch => {
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(() => {
-      dispatch({
-        type: LOGIN_USER_SUCCESS
-      });
-      console.log("success");
-       Router.push({
-         pathname: "/dashboard"
-       });
-    })
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
       if (error) {
+        console.log(errorMessage);
         dispatch({
           type: LOGIN_USER_FAIL
         });
-        console.log(errorMessage);
+        return;
       }
+    })
+    .then(() => {
+      dispatch({
+        type: LOGIN_USER_SUCCESS
+      });
+      console.log("success");
+      Router.push({
+        pathname: "/dashboard"
+      });
+    })
+    .then(() => {
+      dispatch({
+        type: CLEAR_GEN_STATE
+      });
     });
 };
 export const handleAuth = () => dispatch => {
-  console.log('handling AuthState')
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged(async user => {
     if (user) {
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
+      const { displayName, email, photoURL, uid } = user;
       // ...
-      dispatch({
-        type: IS_AUTHED,
-        payload: { auth: true }
+
+      await dispatch({
+        type: AUTHORIZED,
+        payload: { authed: true }
       });
-      console.log("user", user);
-      console.log("authed", authed, isAuthed);
+      await dispatch({
+        type: HANDLE_USER_DATA,
+        payload: { userData: { displayName, email, photoURL, uid } }
+      });
       if (window.location.pathname.includes("login"))
         Router.push({
           pathname: "/dashboard"
@@ -76,10 +64,13 @@ export const handleAuth = () => dispatch => {
     } else {
       // User is signed out.
       // ...
-      console.log("!authed", authed);
-      dispatch({
-        type: IS_AUTHED,
-        payload: { auth: false }
+      await dispatch({
+        type: AUTHORIZED,
+        payload: { authed: false }
+      });
+      await dispatch({
+        type: HANDLE_USER_DATA,
+        payload: { userData: {} }
       });
       if (window.location.pathname.includes("dashboard"))
         Router.push({
@@ -87,5 +78,4 @@ export const handleAuth = () => dispatch => {
         });
     }
   });
-  console.log("authed");
 };

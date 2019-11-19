@@ -1,15 +1,36 @@
 import { MoiText, MoiInput, MoiForm, MoiSelector } from "../common/";
 import { connect } from "react-redux";
-import { contentManagerTextChange } from "./../../actions/ContentManagerActions/index";
+import { submitContent, onTextChange } from "../../actions";
 
-const MoiPost = ({ contentManagerTextChange }) => (
-  <MoiForm formStyle={"w-100"} id={"content-mananger-form"}>
+const MoiPost = ({
+  title,
+  description,
+  content,
+  category,
+  onTextChange,
+  userData,
+  submitContent
+}) => (
+  <MoiForm
+    formStyle={"w-100"}
+    id={"content-mananger-form"}
+    onSubmit={e => {
+      e.preventDefault();
+      submitContent({
+        title,
+        description,
+        content,
+        category,
+        userData
+      });
+    }}
+  >
     <MoiInput
       label={"Title"}
       id={"content-title"}
       onChangeText={e => {
         e.preventDefault();
-        contentManagerTextChange({
+        onTextChange({
           prop: "title",
           value: e.target.value
         });
@@ -20,7 +41,7 @@ const MoiPost = ({ contentManagerTextChange }) => (
       id={"content-descrption"}
       onChangeText={e => {
         e.preventDefault();
-        contentManagerTextChange({
+        onTextChange({
           prop: "description",
           value: e.target.value
         });
@@ -31,8 +52,19 @@ const MoiPost = ({ contentManagerTextChange }) => (
       id={"content-manager-text"}
       onChangeText={e => {
         e.preventDefault();
-        contentManagerTextChange({
+        onTextChange({
           prop: "content",
+          value: e.target.value
+        });
+      }}
+    />
+    <MoiInput
+      label={"#Tags"}
+      id={"content-tags"}
+      onChangeText={e => {
+        e.preventDefault();
+        onTextChange({
+          prop: "tags",
           value: e.target.value
         });
       }}
@@ -40,10 +72,10 @@ const MoiPost = ({ contentManagerTextChange }) => (
     <MoiSelector
       label={"Category"}
       id={"content-manager-selector"}
-      options={["Guide"]}
+      options={["Guide","Blog"]}
       onChange={e => {
         e.preventDefault();
-        contentManagerTextChange({
+        onTextChange({
           prop: "category",
           value: e.target.value
         });
@@ -52,9 +84,12 @@ const MoiPost = ({ contentManagerTextChange }) => (
   </MoiForm>
 );
 const mapStateToProp = state => ({
-  title: state.ContentManagerReducer.title,
-  description: state.ContentManagerReducer.description,
-  content: state.ContentManagerReducer.content,
-  category: state.ContentManagerReducer.category
+  userData: state.AuthReducer.userData,
+  title: state.GeneralReducer.title,
+  description: state.GeneralReducer.description,
+  content: state.GeneralReducer.content,
+  category: state.GeneralReducer.category
 });
-export default connect(mapStateToProp, { contentManagerTextChange })(MoiPost);
+export default connect(mapStateToProp, { onTextChange, submitContent })(
+  MoiPost
+);

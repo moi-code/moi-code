@@ -21,12 +21,10 @@ class Live extends Component {
       embed = new window.Twitch.Embed(this.props.targetID, { ...this.props });
     });
     document.body.appendChild(script);
-    () => {
+    async() => {
       console.log("activate");
       if (document.querySelectorAll(`${this.props.targetId} iframe`).length > 1)
-        document.querySelectorAll(`${this.props.targetId} iframe`).pop();
-
-      console.log(this.props.targetID);
+        await document.querySelectorAll(`${this.props.targetId} iframe`).pop();
     };
   }
   render() {

@@ -26,22 +26,23 @@ if (process.env.NODE_ENV !== "backend") {
     /**
      * @description Routes Used for the Project must come before the core.
      */
-    require("./api/auth")(app, server);
-    require("./api/about")(app, server);
-    require("./api/github")(app, server);
-    require("./api/live")(app, server);
-    require("./api/dashboard")(app, server);
+    require("./core")(app, server);
+    require("./auth")(app, server);
+    require("./about")(app, server);
+    require("./github")(app, server);
+    require("./live")(app, server);
+    require("./dashboard")(app, server);
     /**
      * @protected - Do not remove
-     * @requires Core
+     * @requires Server
      * @description This is the Core of the Project rendering the Homepage, Handling Get Requests, and starting the express server
      */
-    require("./core")(app, server);
+    require("./server")(app, server);
   });
 } else {
   app = express();
   server = app;
-  require("./core")(app, server);
-  require("./api/auth")(app, server);
-  require("./api/about")(app, server);
+  require("./auth")(app, server);
+  require("./about")(app, server);
+  require("./server")(app, server);
 }

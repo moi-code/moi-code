@@ -1,16 +1,23 @@
+import types from "../../actions/types";
+
+const { HANDLE_TEXT, CLEAR_GEN_STATE } = types;
 const initialState = {
-  value: {}
+  email: "",
+  password: "",
+  confirmPassword: "",
+  title: "",
+  description: "",
+  content: "",
+  category: "",
+  tags:""
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    // case AUTHORIZE_USER:
-    //   console.log("<", action.payload);
-    //   return {
-    //     ...state,
-    //     isAuthenticated: !isEmpty(action.payload),
-    //     user: action.payload
-    //   };
+    case HANDLE_TEXT:
+      return { ...state, [action.payload.prop]: action.payload.value };
+    case CLEAR_GEN_STATE:
+      return { ...state, ...initialState };
     default:
       return state;
   }

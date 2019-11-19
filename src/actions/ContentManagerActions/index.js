@@ -1,27 +1,38 @@
 import types from "../types";
-
+import Router from "next/router";
 import firebase from "../../../public/firebase/firebase.client";
 import "firebase/auth";
-import "firebase/"
-const { HANDLE_CONTENT_MANAGER_TEXT } = types;
-export const contentManagerTextChange = payload => dispatch => {
-  dispatch({
-    type: HANDLE_CONTENT_MANAGER_TEXT,
-    payload
-  });
-};
+import "firebase/firestore";
+const { CONTENT_POST_SUCCESS, CONTENT_POST_FAIL } = types;
+export const submitContent = payload => dispatch => {
+  const db = firebase.firestore();
+  const { title, description, content, category, userData } = payload;
+  const { displayName, photoURL, uid } = userData;
+  const contentData = {
+    uid,
+    displayName,
+    photoURL,
+    title,
+    description,
+    category,
+    content,
+    date: Date.now()
+  };
 
-export const submitContent = ()=>dispatch=>{
-    firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
-      // ...
-    }})
-}
+  if (title.length > 0 && content.length > 0 && category.length > 0) {
+    dispatch({
+      type: CONTENT_POST_SUCCESS
+    });
+
+    db.collection(category)
+      .doc()
+      .set(contentData);
+    Router.push({
+      pathname:'/'
+    })
+  } else {
+    dispatch({
+      type: CONTENT_POST_FAIL
+    });
+  }
+};

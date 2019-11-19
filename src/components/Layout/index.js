@@ -8,12 +8,11 @@ import "../../../public/fonts.css";
 // import "../../../public/bootstrap.bundle";
 import "jquery/dist/jquery.min";
 import { connect } from "react-redux";
-import { isAuthed } from "../../actions";
+import { handleAuth } from "../../actions";
 class Layout extends Component {
   constructor(props) {
     super(props);
-    console.log(props.authed);
-
+    props.handleAuth();
   }
   render() {
     const { children } = this.props;
@@ -30,4 +29,4 @@ class Layout extends Component {
 const mapStateToProps = state => ({
   authed: state.AuthReducer.authed
 });
-export default connect(mapStateToProps, { isAuthed })(Layout);
+export default connect(mapStateToProps, { handleAuth })(Layout);

@@ -13,7 +13,6 @@ class MoiCode extends App {
     super(props);
     this.persistor = persistStore(props.reduxStore);
   }
-
   render() {
     const { Component, pageProps, reduxStore } = this.props;
     return (

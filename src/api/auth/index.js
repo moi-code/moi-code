@@ -1,4 +1,4 @@
-const firebase = require('../../../../public/firebase/firebase.server')
+const firebase = require('../../../public/firebase/firebase.server')
 module.exports = (app, server) => {
   /**
    * @route GET api/login

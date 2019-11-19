@@ -1,16 +1,20 @@
-import types from './../../actions/types';
-const {HANDLE_CONTENT_MANAGER_TEXT}=types
+import types from "./../../actions/types";
+const {
+  HANDLE_CONTENT_MANAGER_TEXT,
+  CONTENT_POST_SUCCESS,
+  CONTENT_POST_FAIL
+} = types;
 const initialState = {
-  title:'',
-  description:'',
-  content:'',
-  category:''
+  contentPostSuccess: null,
+  contentPostFail: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case HANDLE_CONTENT_MANAGER_TEXT:
-      return { ...state, [action.payload.prop]: action.payload.value };
+    case CONTENT_POST_SUCCESS:
+      return { ...state, contentPostSuccess: true };
+    case CONTENT_POST_FAIL:
+      return { ...state, contentPostFail: false };
     default:
       return state;
   }

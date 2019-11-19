@@ -1,12 +1,14 @@
 import React,{Component} from 'react'
 import MoiDash from '../../../src/components/MoiDash'
+import MoiPost from '../../../src/components/MoiPost';
 class ContentManager extends Component{
 render(){
   return(
     <MoiDash>
-      <div>
+      <h5>
         contents managers
-      </div>
+      </h5>
+      <MoiPost/>
     </MoiDash>
   )
 }

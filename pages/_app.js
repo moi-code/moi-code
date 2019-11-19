@@ -22,14 +22,14 @@ class MoiCode extends App {
           loading={<Component {...pageProps} />}
           persistor={this.persistor}
         >
-          <moi className="h-100">
+          <div className="h-100">
             <Head>
               <title>Moi Code</title>
             </Head>
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </moi>
+          </div>
         </PersistGate>
       </Provider>
     );

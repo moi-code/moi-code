@@ -33,6 +33,9 @@ export const userLogin = (email, password) => dispatch => {
         type: LOGIN_USER_SUCCESS
       });
       console.log("success");
+       Router.push({
+         pathname: "/dashboard"
+       });
     })
     .catch(function(error) {
       // Handle Errors here.

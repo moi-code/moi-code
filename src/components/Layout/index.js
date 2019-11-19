@@ -20,7 +20,16 @@ class Layout extends Component {
     return (
       <div className="h-100">
         <Navbar />
-        <div className="layout container-fluid h-100">{children}</div>
+        <div
+          onClick={() => {
+            document.querySelector(".collapse").classList.contains("show")
+              ? document.querySelector(".collapse").classList.remove("show")
+              : null;
+          }}
+          className="layout container-fluid h-100"
+        >
+          {children}
+        </div>
       </div>
     );
   }

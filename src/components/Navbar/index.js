@@ -8,7 +8,8 @@ const buttonClick = e => {
     : document.querySelector(".collapse").classList.add("show");
 };
 
-const isActive = () => {
+const isActive = (e) => {
+  e.preventDefault()
   document.querySelectorAll(".nav-item").forEach(el => {
     if (window.location.pathname == el.href) {
       el.classList.add("active");

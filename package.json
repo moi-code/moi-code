@@ -37,7 +37,7 @@
     "redux-persist-transform-encrypt": "^2.0.1",
     "redux-thunk": "^2.3.0",
     "socket.io": "^2.3.0"
-    "redux-devtools-extension": "^2.13.8",
+    "redux-devtools-extension": "^2.13.8"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",

@@ -3,32 +3,38 @@ const withCSS = require('@zeit/next-css');
 
 // const withOffline = require('next-offline');
 
-const nextConfig = withCSS({
-  // target: 'server',
-  // transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
+const nextConfig = withOffline({
+  target: "server",
+  transformManifest: manifest => ["/"].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
   // turn on the SW in dev mode so that we can actually test it
-  // generateInDevMode: true,
-  // workboxOpts: {
-  // 	swDest: 'static/service-worker.js',
-  // 	runtimeCaching: [
-  // 		{
-  // 			urlPattern: /^https?.*/,
-  // 			handler: 'NetworkFirst',
-  // 			options: {
-  // 				cacheName: 'moi-code-cache',
-  // 				networkTimeoutSeconds: 15,
-  // 				expiration: {
-  // 					maxEntries: 150,
-  // 					maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
-  // 				},
-  // 				cacheableResponse: {
-  // 					statuses: [0, 200]
-  // 				}
-  // 			}
-  // 		}
-  // 	]
-  // },
+  generateInDevMode: true,
+  workboxOpts: {
+    maximumFileSizeToCacheInBytes: 5000000,
+    // ...other Workbox build configuration options...
+    swDest: "static/service-worker.js",
+    runtimeCaching: [
+      {
+        urlPattern: /.png$/,
+        handler: "CacheFirst"
+      },
+      {
+        urlPattern: /^https?.*/,
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "offlineCache",
+          networkTimeoutSeconds: 15,
+          expiration: {
+            maxEntries: 200,
+            maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
+          },
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
+      }
+    ]
+  },
   publicRuntimeConfig: {
     apiKey: process.env.REACT_APP_APIKEY,
     authDomain: process.env.REACT_APP_AUTHDOMAIN,
@@ -49,4 +55,4 @@ const nextConfig = withCSS({
   }
 });
 
-module.exports = withOffline(nextConfig);
+module.exports = withCSS(nextConfig);

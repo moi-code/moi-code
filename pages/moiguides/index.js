@@ -9,7 +9,7 @@ class MoiGuides extends Component {
   render() {
     const { guides } = this.props;
     return (
-      <div className="container h-100 d-flex flex-column justify-content-start mt-3">
+      <div className="container d-flex flex-column justify-content-start mt-3">
         {guides.map((guide, i) => {
           const {
             id,

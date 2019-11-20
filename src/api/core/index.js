@@ -1,5 +1,6 @@
 const cacheableResponse = require("cacheable-response");
-const axios = require("axios");
+const { parse } = require("url");
+const { join } = require("path");
 module.exports = (app, server) => {
   const ssrCache = cacheableResponse({
     ttl: 250 * 60 * 60, // 1hour
@@ -8,6 +9,13 @@ module.exports = (app, server) => {
     }),
     send: ({ data, res }) => res.send(data)
   });
+
+  server.get("/service-worker.js",(req,res)=>{
+    const parsedUrl = parse(req.url, true);
+    const { pathname } = parsedUrl;
+    const filePath = join(`${__dirname}/../../../`, ".next/static/", pathname);
+    app.serveStatic(req, res, filePath);
+  })
   server.get("/", (req, res) => {
     return ssrCache({ req, res, pagePath: "/" });
   });

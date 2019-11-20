@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import fetch from "isomorphic-unfetch";
 import "./github.css";
 export default class extends Component {
   static async getInitialProps({ query }) {
+    
     return {
       login: query.githubData.login,
       avatarUrl: query.githubData.avatarUrl,

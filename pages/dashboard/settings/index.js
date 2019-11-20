@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MoiDash from '../../../src/components/MoiDash'
 import { MoiForm, MoiInput } from "../../../src/components/common";
 import { onTextChange, updateUser } from "../../../src/actions";
 import { connect } from "react-redux";
@@ -6,7 +7,16 @@ class Settings extends Component {
   render() {
     const { userName, photoURL, updateUser, onTextChange } = this.props;
     return (
-      <div className="h-100 mt-3">
+      <MoiDash className="h-100 mt-3">
+        <style jsx>{`
+          a {
+            color: #000 !important;
+          }
+          a:hover {
+            color: purple !important;
+          }import MoiDash from './../../../src/components/MoiDash/index';
+
+        `}</style>
         <h3>Settings</h3>
         <MoiForm
           onSubmit={e => {
@@ -29,7 +39,7 @@ class Settings extends Component {
             type="text"
             className="form-control"
             id="settingsUsername"
-            placeholder={'MOIKUNE'}
+            placeholder={"MOIKUNE"}
           />
           <MoiInput
             label={"Avatar (url)"}
@@ -47,7 +57,7 @@ class Settings extends Component {
             }}
           />
         </MoiForm>
-      </div>
+      </MoiDash>
     );
   }
 }

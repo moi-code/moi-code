@@ -23,6 +23,8 @@ class MoiCode extends App {
         >
           <div className="h-100">
             <Head>
+              <link rel="manifest" href="/manifest.json" />
+              <link rel="shortcut icon" href="/favicon.ico" />
               <title>Moi Code</title>
             </Head>
             <Layout>

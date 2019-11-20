@@ -19,6 +19,41 @@ class Layout extends Component {
 
     return (
       <div className="h-100">
+        <style jsx>{`
+          html,
+          body,
+          body > div {
+            height: 100%;
+            /* Gotham ScreenSmart Light */
+            font-family: "MoiGoth", "MoiGotha", monospace;
+            font-style: normal;
+            font-weight: 300;
+            background-color: #eee;
+          }
+          ::-webkit-scrollbar {
+            display: none;
+          }
+          .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currentlysupported by Chrome and Opera */
+          }
+          .layout {
+            height: calc(100% - 7rem);
+          }
+          .twitch-embed iframe:nth-child(2) {
+            display: none !important;
+          }
+          a {
+            color: #000 !important;
+          }
+          a:hover {
+            color: purple !important;
+          }
+        `}</style>
         <Navbar />
         <div
           onClick={() => {

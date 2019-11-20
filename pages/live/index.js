@@ -30,7 +30,11 @@ class Live extends Component {
   render() {
     return (
       <div className="h-100 d-flex flex-column justify-content my-3">
-        {}
+        <style jsx>{`
+          #twitch-embed iframe {
+            border: solid #000 0.125rem !important;
+          }
+        `}</style>
         <div className="h-100 p-3">
           <h1 title="Try this /live/:enter-your-favorite-streamer">Moi Live</h1>
           <div id={this.props.targetID} className="h-100"></div>

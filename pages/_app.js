@@ -5,22 +5,35 @@ import { Provider } from "react-redux";
 
 import Layout from "../src/components/Layout";
 import store from "../src/store";
+import withReduxStore from "../src/with-redux-store";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 class MoiCode extends App {
-
+  constructor(props) {
+    super(props);
+    this.persistor = persistStore(props.reduxStore);
+  }
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
     return (
-      <Provider store={store}>
-        <moi className="h-100">
-          <Head>
-            <title>Moi Code</title>
-          </Head>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </moi>
+      <Provider store={reduxStore}>
+        <PersistGate
+          loading={<Component {...pageProps} />}
+          persistor={this.persistor}
+        >
+          <div className="h-100">
+            <Head>
+              <link rel="manifest" href="/manifest.json" />
+              <link rel="shortcut icon" href="/favicon.ico" />
+              <title>Moi Code</title>
+            </Head>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </div>
+        </PersistGate>
       </Provider>
     );
   }
 }
-export default MoiCode
+export default withReduxStore(MoiCode);

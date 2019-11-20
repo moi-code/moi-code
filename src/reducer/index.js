@@ -1,7 +1,11 @@
-import { combineReducers } from 'redux';
-import generalReducer from './GeneralReducer';
-import AuthReducer from './AuthReducer';
+import { combineReducers } from "redux";
+import GeneralReducer from "./GeneralReducer";
+import AuthReducer from "./AuthReducer";
+import ContentManagerReducer from "./ContentManagerReducer";
+import MoiGuideReducer from './MoiGuideReducer'
 export default combineReducers({
-  generalReducer,
-  AuthReducer
+  GeneralReducer,
+  AuthReducer,
+  ContentManagerReducer,
+  MoiGuideReducer
 });

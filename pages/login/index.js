@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./login.css";
 import { MoiInput, MoiForm } from "../../src/components/common";
-import { loginTextChange, userLogin } from "./../../src/actions";
+import { onTextChange, userLogin } from "./../../src/actions";
 class Login extends Component {
   onSubmit() {
     const { email, password, userLogin } = this.props;
@@ -13,9 +13,14 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password, loginTextChange, disabled } = this.props;
+    const { email, password, onTextChange, disabled } = this.props;
     return (
       <div className="h-100 form mx-auto d-flex flex-column justify-content-center">
+        <style jsx>{`
+          .form {
+            max-width: 51.25rem !important;
+          }
+        `}</style>
         <MoiForm
           onSubmit={e => {
             e.preventDefault();
@@ -26,7 +31,7 @@ class Login extends Component {
             label="Email"
             onChangeText={e => {
               e.preventDefault();
-              loginTextChange({
+              onTextChange({
                 prop: "email",
                 value: e.target.value
               });
@@ -42,7 +47,7 @@ class Login extends Component {
             label="Password"
             onChangeText={e => {
               e.preventDefault();
-              loginTextChange({
+              onTextChange({
                 prop: "password",
                 value: e.target.value
               });
@@ -59,7 +64,7 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  email: state.AuthReducer.email,
-  password: state.AuthReducer.password
+  email: state.GeneralReducer.email,
+  password: state.GeneralReducer.password
 });
-export default connect(mapStateToProps, { loginTextChange, userLogin })(Login);
+export default connect(mapStateToProps, { onTextChange, userLogin })(Login);

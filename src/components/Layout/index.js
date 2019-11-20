@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React, { Component } from "react";
 import Navbar from "../Navbar";
 import firebase from "../../../public/firebase/firebase.client";
@@ -7,40 +8,69 @@ import "../../../public/fonts.css";
 // import "../../../public/bootstrap.bundle";
 import "jquery/dist/jquery.min";
 import { connect } from "react-redux";
-import { IsAuthed } from "../../actions/AuthActions";
+import { handleAuth } from "../../actions";
 class Layout extends Component {
-  componentDidMount() {
-    const { auth, IsAuthed } = this.props;
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-        IsAuthed(true);
-      } else {
-        // User is signed out.
-        // ...
-      }
-    });
+  constructor(props) {
+    super(props);
+    props.handleAuth();
   }
   render() {
     const { children } = this.props;
+
     return (
       <div className="h-100">
+        <style jsx>{`
+          html,
+          body,
+          body > div {
+            height: 100%;
+            /* Gotham ScreenSmart Light */
+            font-family: "MoiGoth", "MoiGotha", monospace;
+            font-style: normal;
+            font-weight: 300;
+            background-color: #eee;
+          }
+          ::-webkit-scrollbar {
+            display: none;
+          }
+          .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currentlysupported by Chrome and Opera */
+          }
+          .layout {
+            height: calc(100% - 7rem);
+          }
+          .twitch-embed iframe:nth-child(2) {
+            display: none !important;
+          }
+          a {
+            color: #000 !important;
+          }
+          a:hover {
+            color: purple !important;
+          }
+        `}</style>
         <Navbar />
-        <div className="layout container-fluid">{children}</div>
+        <div
+          onClick={() => {
+            document.querySelector(".collapse").classList.contains("show")
+              ? document.querySelector(".collapse").classList.remove("show")
+              : null;
+          }}
+          className="layout container-fluid h-100"
+        >
+          {children}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  auth: state.AuthReducer.auth
+  authed: state.AuthReducer.authed
 });
-export default connect(mapStateToProps, { IsAuthed })(Layout);
+export default connect(mapStateToProps, { handleAuth })(Layout);

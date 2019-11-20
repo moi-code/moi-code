@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../src/components/Header";
+import fetch from "isomorphic-unfetch";
 export default class extends Component {
   static async getInitialProps({ req }) {
     const isServer = typeof window === "undefined";
@@ -21,15 +22,14 @@ export default class extends Component {
             <p className="lead">Moi Everything</p>
             <p>{en}</p>
             <p>-{author}</p>
+            <p
+              className="lead"
+              title="Using NextJS and Express for SSR Optimization."
+            >
+              <strong>{isServer ? "Server" : "Client"} side</strong>.
+            </p>
           </div>
         </Header>
-        <p
-          className="lead"
-          title="Using NextJS and Express for SSR Optimization."
-        >
-          <br />
-          <strong>{isServer ? "Server" : "Client"} side</strong>.
-        </p>
       </div>
     );
   }

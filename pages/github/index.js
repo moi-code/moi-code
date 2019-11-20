@@ -26,6 +26,14 @@ export default class extends Component {
     } = this.props;
     return (
       <div className="container mx-auto my-5 p-3 border border-dark">
+        <style jsx>{`
+          a {
+            color: #000 !important;
+          }
+          a:hover {
+            color: purple !important;
+          }
+        `}</style>
         <div className="d-flex flex-column flex-md-row my-2">
           <div className="mt-2 p-3 mx-auto border">
             <img

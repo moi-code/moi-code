@@ -1,17 +1,21 @@
-
 import "./moidash.css";
 import SideBar from "../SideBar";
 import SideBarItem from "../common/SideBarItem";
 import { connect } from "react-redux";
 import { Component } from "react";
 import { handleAuth } from "./../../actions/AuthActions/index";
-import  Router  from 'next/router';
+import Router from "next/router";
 
 class MoiDash extends Component {
   showDash = (moiDashStyle, children, authed) => {
     if (authed) {
       return (
         <div className={`moidash d-flex flex-row h-100 ${moiDashStyle}`}>
+          <style jsx>{`
+            .moidash-body {
+              margin-left: 11.125rem;
+            }
+          `}</style>
           <SideBar>
             <SideBarItem
               itemText={"Dashboard"}
@@ -31,7 +35,6 @@ class MoiDash extends Component {
         </div>
       );
     } else {
-
       return (
         <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>

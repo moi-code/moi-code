@@ -28,6 +28,11 @@ const dashboardNav = auth => {
 };
 const Nav = ({ authed }) => (
   <span>
+    <style jsx>{`
+      .moidash-body {
+        margin-left: 11.125rem;
+      }
+    `}</style>
     <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light">
       <Link href="/">
         <a className="navbar-brand">Moi Code</a>

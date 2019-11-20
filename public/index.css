@@ -25,3 +25,9 @@ body > div {
 .twitch-embed iframe:nth-child(2){
   display:none !important
 }
+a {
+  color: #000 !important;
+}
+a:hover {
+  color: purple !important;
+}

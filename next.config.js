@@ -3,7 +3,7 @@ const withCSS = require('@zeit/next-css');
 
 // const withOffline = require('next-offline');
 
-const nextConfig = withOffline({
+const nextConfig = withCSS({
   target: "server",
   transformManifest: manifest => ["/"].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
@@ -15,6 +15,10 @@ const nextConfig = withOffline({
     swDest: "static/service-worker.js",
     runtimeCaching: [
       {
+        urlPattern: /.css$/,
+        handler: "NetworkFirst"
+      },
+      {
         urlPattern: /.png$/,
         handler: "CacheFirst"
       },
@@ -23,7 +27,7 @@ const nextConfig = withOffline({
         handler: "NetworkFirst",
         options: {
           cacheName: "offlineCache",
-          networkTimeoutSeconds: 15,
+          networkTimeoutSeconds: 30,
           expiration: {
             maxEntries: 200,
             maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
@@ -55,4 +59,4 @@ const nextConfig = withOffline({
   }
 });
 
-module.exports = withCSS(nextConfig);
+module.exports = withOffline(nextConfig);

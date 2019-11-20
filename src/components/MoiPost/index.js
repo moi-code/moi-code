@@ -25,6 +25,11 @@ const MoiPost = ({
       });
     }}
   >
+    <style jsx>{`
+      .moidash-body {
+        margin-left: 11.125rem;
+      }
+    `}</style>
     <MoiInput
       label={"Title"}
       id={"content-title"}
@@ -72,7 +77,7 @@ const MoiPost = ({
     <MoiSelector
       label={"Category"}
       id={"content-manager-selector"}
-      options={["Guide","Blog"]}
+      options={["Guide", "Blog"]}
       onChange={e => {
         e.preventDefault();
         onTextChange({

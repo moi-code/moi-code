@@ -16,6 +16,11 @@ class Login extends Component {
     const { email, password, onTextChange, disabled } = this.props;
     return (
       <div className="h-100 form mx-auto d-flex flex-column justify-content-center">
+        <style jsx>{`
+          .form {
+            max-width: 51.25rem !important;
+          }
+        `}</style>
         <MoiForm
           onSubmit={e => {
             e.preventDefault();

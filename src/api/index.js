@@ -32,6 +32,8 @@ if (process.env.NODE_ENV !== "backend") {
     require("./github")(app, server);
     require("./live")(app, server);
     require("./dashboard")(app, server);
+    
+    require("./moiguides")(app, server);
     /**
      * @protected - Do not remove
      * @requires Server

@@ -4,12 +4,16 @@ const {
   AUTHORIZED,
   HANDLE_USER_DATA,
   LOGIN_USER_FAIL,
-  LOGIN_USER_SUCCESS
+  LOGIN_USER_SUCCESS,
+  USER_UPDATE_FAIL,
+  USER_UPDATE_SUCCESS
 } = types;
 
 const initialState = {
   authed: false,
-  userData: {}
+  userData: {},
+  user_update_success: false,
+  user_update_fail: false
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +26,10 @@ export default (state = initialState, action) => {
       return { ...state, authed: true };
     case LOGIN_USER_FAIL:
       return { ...state, authed: false };
+    case USER_UPDATE_SUCCESS:
+      return { ...state, user_update_success: true };
+    case USER_UPDATE_FAIL:
+      return { ...state, user_update_fail: true };
     default:
       return state;
   }

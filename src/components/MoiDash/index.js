@@ -21,6 +21,10 @@ class MoiDash extends Component {
               itemText={"Content Manager"}
               path={"/dashboard/content-manager"}
             ></SideBarItem>
+            <SideBarItem
+              itemText={"Settings"}
+              path={"/dashboard/settings"}
+            ></SideBarItem>
           </SideBar>
 
           <div className="moidash-body col pt-3 h-100">{children}</div>

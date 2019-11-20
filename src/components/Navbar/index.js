@@ -2,14 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 const buttonClick = e => {
-  e.preventDefault();
   document.querySelector(".collapse").classList.contains("show")
     ? document.querySelector(".collapse").classList.remove("show")
     : document.querySelector(".collapse").classList.add("show");
 };
 
 const isActive = (e) => {
-  e.preventDefault()
   document.querySelectorAll(".nav-item").forEach(el => {
     if (window.location.pathname == el.href) {
       el.classList.add("active");

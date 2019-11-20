@@ -5,6 +5,8 @@ const initialState = {
   email: "",
   password: "",
   confirmPassword: "",
+  userName:"",
+  profileUrl:"",
   title: "",
   description: "",
   content: "",

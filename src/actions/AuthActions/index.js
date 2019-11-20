@@ -8,7 +8,9 @@ const {
   HANDLE_USER_DATA,
   CLEAR_GEN_STATE,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_FAIL
 } = types;
 export const registerUser = () => dispatch => {};
 export const userLogin = (email, password) => dispatch => {
@@ -45,10 +47,10 @@ export const userLogin = (email, password) => dispatch => {
 };
 export const handleAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(async user => {
-    if (user) {
+    if (user !== null) {
       const { displayName, email, photoURL, uid } = user;
       // ...
-
+      console.log(photoURL);
       await dispatch({
         type: AUTHORIZED,
         payload: { authed: true }
@@ -78,4 +80,29 @@ export const handleAuth = () => dispatch => {
         });
     }
   });
+};
+
+export const updateUser = payload => dispatch => {
+  var user = firebase.auth().currentUser;
+
+  if (user != null) {
+    console.log(payload);
+    user
+      .updateProfile({
+        displayName: payload.userName,
+        photoURL: payload.photoURL
+      })
+      .then(() => {
+        // Update successful.
+        dispatch({
+          type: USER_UPDATE_SUCCESS
+        });
+      })
+      .catch(error => {
+        // An error happened.
+        dispatch({
+          type: USER_UPDATE_FAIL
+        });
+      });
+  }
 };

@@ -9,6 +9,7 @@ import "../../../public/fonts.css";
 import "jquery/dist/jquery.min";
 import { connect } from "react-redux";
 import { handleAuth } from "../../actions";
+import Footer from "../Footer";
 class Layout extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,7 @@ class Layout extends Component {
     const { children } = this.props;
 
     return (
-      <div className="h-100">
+      <div className="h-100 bg-dark">
         <style jsx>{`
           html,
           body,
@@ -41,17 +42,20 @@ class Layout extends Component {
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currentlysupported by Chrome and Opera */
           }
+          .fnt-white{
+            color:#fff !important
+          }
           .layout {
-            height: calc(100% - 7rem);
+            height: calc(100% - 7.1rem);
           }
           .twitch-embed iframe:nth-child(2) {
             display: none !important;
           }
           a {
-            color: #000 !important;
+            color: #000;
           }
           a:hover {
-            color: purple !important;
+            color: purple;
           }
         `}</style>
         <Navbar />
@@ -61,9 +65,10 @@ class Layout extends Component {
               ? document.querySelector(".collapse").classList.remove("show")
               : null;
           }}
-          className="layout container-fluid h-100"
+          className="layout container-fluid bg-dark fnt-white"
         >
           {children}
+          <Footer/>
         </div>
       </div>
     );

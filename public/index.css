@@ -19,15 +19,16 @@ body > div {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currentlysupported by Chrome and Opera */
 }
-.layout{
-  height: calc(100% - 7rem);
+.fnt-white {
+  color: #fff !important;
 }
-.twitch-embed iframe:nth-child(2){
-  display:none !important
+.layout {
+  height: calc(100% - 7.1rem);
 }
-a {
-  color: #000 !important;
+.twitch-embed iframe:nth-child(2) {
+  display: none !important;
 }
+
 a:hover {
-  color: purple !important;
+  color: purple;
 }

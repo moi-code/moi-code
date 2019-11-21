@@ -59,11 +59,6 @@ const Nav = ({ authed }) => (
             </Link>
           </li>
           <li onClick={isActive} className="nav-item">
-            <a className="nav-link" href="/github">
-              Moi-Git
-            </a>
-          </li>
-          <li onClick={isActive} className="nav-item">
             <a className="nav-link" href="/moi-guides">
               Moi Guides
             </a>

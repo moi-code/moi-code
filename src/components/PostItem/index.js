@@ -10,7 +10,7 @@ export default ({
 }) => (
   <div
     id={id}
-    className="postItem d-flex flex-row border border-dark my-3"
+    className="postItem d-flex flex-row border border-white my-3"
     onClick={onClick}
   >
     <style jsx>{`
@@ -20,7 +20,7 @@ export default ({
     `}</style>
     <div className="d-flex flex-column justify-content-between h-100">
       <img
-        className="h-100 border-right border-dark mr-3 p-2"
+        className="h-100 border-right border-white mr-3 p-2"
         src={photoURL}
         alt="User Profile Picture"
       />

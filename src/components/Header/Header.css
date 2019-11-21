@@ -1,4 +1,4 @@
 .Header {
-	height: 31.25rem;
-	width: 31.25rem;
+	max-height: 31.25rem;
+	max-width: 31.25rem;
 }

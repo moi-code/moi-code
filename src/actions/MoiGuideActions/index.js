@@ -4,10 +4,8 @@ import firebase from "../../../public/firebase/firebase.client";
 import "firebase/auth";
 import "firebase/firestore";
 const { GOT_GUIDE_DATA } = types;
+const db = firebase.firestore();
 export const getMoiGuides = () => dispatch => {
-  console.log("q");
-  const db = firebase.firestore();
-
   db.collection("Guide").onSnapshot(
     function(querySnapshot) {
       var guides = [];
@@ -36,4 +34,11 @@ export const getMoiGuides = () => dispatch => {
   );
 
   // dispatch({})
+};
+export const getMoiGuide = payload => dispatch => {
+  const { category, id } = payload;
+
+  // Router.push(
+  //   `/moi-guides/${category}/${id}`
+  // );
 };

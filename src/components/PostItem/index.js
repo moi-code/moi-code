@@ -8,6 +8,7 @@ export default ({
   date,
   onClick
 }) => (
+  <a className='fnt-white' href={`/guide/${category}/${id}`}>
   <div
     id={id}
     className="postItem d-flex flex-row border border-white my-3"
@@ -33,4 +34,6 @@ export default ({
       <p>{category}</p>
     </div>
   </div>
+
+  </a>
 );

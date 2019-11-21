@@ -6,7 +6,7 @@ body > div {
   font-family: "MoiGoth", "MoiGotha", monospace;
   font-style: normal;
   font-weight: 300;
-  background-color: #eee;
+  background-color: #343a40!important;
 }
 ::-webkit-scrollbar {
   display: none;

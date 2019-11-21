@@ -25,7 +25,7 @@ class MoiCode extends App {
             <Head>
               <link rel="manifest" href="/manifest.json" />
               <link rel="shortcut icon" href="/favicon.ico" />
-              <title>Moi Code</title>
+              <title>Moi Code 🍄🐱‍💻</title>
             </Head>
             <Layout>
               <Component {...pageProps} />

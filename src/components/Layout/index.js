@@ -19,7 +19,7 @@ class Layout extends Component {
     const { children } = this.props;
 
     return (
-      <div className="h-100 bg-dark">
+      <div className="h-100 bg-dark d-flex flex-column justify-content-between">
         <style jsx>{`
           html,
           body,
@@ -42,10 +42,12 @@ class Layout extends Component {
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currentlysupported by Chrome and Opera */
           }
-          .fnt-white{
-            color:#fff !important
+          .fnt-white {
+            color: #fff !important;
           }
           .layout {
+            overflow-y:scroll;
+            z-index: 1;
             height: calc(100% - 7.1rem);
           }
           .twitch-embed iframe:nth-child(2) {
@@ -65,11 +67,12 @@ class Layout extends Component {
               ? document.querySelector(".collapse").classList.remove("show")
               : null;
           }}
-          className="layout container-fluid bg-dark fnt-white"
+          className="layout container-fluid bg-dark fnt-white  d-flex flex-column justify-content-between"
         >
           {children}
-          <Footer/>
+
         </div>
+          <Footer />
       </div>
     );
   }

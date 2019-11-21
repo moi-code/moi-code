@@ -3,7 +3,11 @@ const cacheableResponse = require("cacheable-response");
 const firebase = require("../../../public/firebase/firebase.server");
 require("firebase/auth");
 require("firebase/firestore");
+
+const getMoiGuides = require("./getMoiGuides");
+
 const db = firebase.firestore();
+
 module.exports = (app, server) => {
   const ssrCache = cacheableResponse({
     ttl: 250 * 60 * 60, // 1hour
@@ -13,9 +17,9 @@ module.exports = (app, server) => {
     send: ({ data, res }) => res.send(data)
   });
 
-  server.get("/guide/:category/:id", (req, res) => {
-    const { category, id } = req.params;
-    var docRef = db.collection(category).doc(id);
+  server.get("/guide/:id", (req, res) => {
+    const { id } = req.params;
+    var docRef = db.collection("Guide").doc(id);
 
     docRef
       .get()
@@ -54,7 +58,7 @@ module.exports = (app, server) => {
       });
   });
 
-  server.get("/moi-guides", (req, res) => {
-    return ssrCache({ req, res, pagePath: "/moiguides" });
+  server.get("/moi-guides", async (req, res) => {
+    await getMoiGuides(req, res, app);
   });
 };

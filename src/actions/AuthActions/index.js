@@ -50,7 +50,6 @@ export const handleAuth = () => dispatch => {
     if (user !== null) {
       const { displayName, email, photoURL, uid } = user;
       // ...
-      console.log(photoURL);
       await dispatch({
         type: AUTHORIZED,
         payload: { authed: true }

@@ -29,11 +29,13 @@ const dashboardNav = auth => {
 const Nav = ({ authed }) => (
   <span>
     <style jsx>{`
-      .moidash-body {
+      .navbar{
+        z-index:300
+      } .moidash-body {
         margin-left: 11.125rem;
       }
     `}</style>
-    <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
       <Link href="/">
         <a className="navbar-brand">Moi Code</a>
       </Link>

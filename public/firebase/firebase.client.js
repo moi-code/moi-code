@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+require("firebase/analytics");
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
 var firebaseConfig = publicRuntimeConfig || {
@@ -14,7 +15,7 @@ var firebaseConfig = publicRuntimeConfig || {
 export { firebaseConfig };
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics().logEvent("notification_received");
 }
 
-
-export default firebase
+export default firebase;

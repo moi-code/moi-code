@@ -39,13 +39,14 @@ module.exports = (app, server) => {
             displayName,
             photoURL,
             title,
-            uid
+            uid,
+            id
           };
-          console.log("ran", queryParams);
           return ssrCache({ req, res, pagePath: "/guide", queryParams });
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
+          return ssrCache({ req, res, pagePath: "/moi-guides" });
         }
       })
       .catch(function(error) {

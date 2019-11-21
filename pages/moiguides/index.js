@@ -25,10 +25,15 @@ class MoiGuides extends Component {
             date
           } = guide;
           return (
-          <PostItem onClick={(e)=>{
-            e.preventDefault()
-            getMoiGuide({category,id})
-          }} key={i} id={id} title={title} description={description} photoURL={photoURL} date={date} category={category}  />
+            <PostItem
+              key={i}
+              id={id}
+              title={title}
+              description={description}
+              photoURL={photoURL}
+              date={date}
+              category={category}
+            />
           );
         })}
       </div>
@@ -38,4 +43,6 @@ class MoiGuides extends Component {
 const mapStateToProps = state => ({
   guides: state.MoiGuideReducer.guides
 });
-export default connect(mapStateToProps, { getMoiGuides, getMoiGuide})(MoiGuides);
+export default connect(mapStateToProps, { getMoiGuides, getMoiGuide })(
+  MoiGuides
+);

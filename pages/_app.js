@@ -1,24 +1,39 @@
-import React from 'react';
-import App from 'next/app';
-import Head from 'next/head'
+import React from "react";
+import App from "next/app";
+import Head from "next/head";
+import { Provider } from "react-redux";
 
-import Navbar from '../src/components/Navbar'
-import Layout from '../src/components/Layout';
-
+import Layout from "../src/components/Layout";
+import store from "../src/store";
+import withReduxStore from "../src/with-redux-store";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 class MoiCode extends App {
-	render() {
-		const { Component, pageProps } = this.props;
-		return (
-			<moi className='h-100'>
-				<Head>
-					<title>Moi Code</title>
-				</Head>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
-			</moi>
-		);
-	}
+  constructor(props) {
+    super(props);
+    this.persistor = persistStore(props.reduxStore);
+  }
+  render() {
+    const { Component, pageProps, reduxStore } = this.props;
+    return (
+      <Provider store={reduxStore}>
+        <PersistGate
+          loading={<Component {...pageProps} />}
+          persistor={this.persistor}
+        >
+          <div className="h-100">
+            <Head>
+              <link rel="manifest" href="/manifest.json" />
+              <link rel="shortcut icon" href="/favicon.ico" />
+              <title>Moi Code</title>
+            </Head>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </div>
+        </PersistGate>
+      </Provider>
+    );
+  }
 }
-
-export default MoiCode;
+export default withReduxStore(MoiCode);

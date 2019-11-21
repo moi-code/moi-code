@@ -2,12 +2,33 @@ html,
 body,
 body > div {
   height: 100%;
-  background-color: #eee;
   /* Gotham ScreenSmart Light */
   font-family: "MoiGoth", "MoiGotha", monospace;
   font-style: normal;
   font-weight: 300;
+  background-color: #343a40!important;
 }
-.layout{
-  height: calc(100% - 7rem);
+::-webkit-scrollbar {
+  display: none;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currentlysupported by Chrome and Opera */
+}
+.fnt-white {
+  color: #fff !important;
+}
+.layout {
+  height: calc(100% - 7.1rem);
+}
+.twitch-embed iframe:nth-child(2) {
+  display: none !important;
+}
+
+a:hover {
+  color: purple;
 }

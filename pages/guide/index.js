@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Router from "next/router";
+import Moment from "react-moment";
 export default class extends Component {
   static getInitialProps({
     query: {
@@ -64,35 +65,67 @@ export default class extends Component {
       id
     } = this.props;
     return (
-      <div id={id} className="h-100">
+      <div id={id} className="h-100 guide">
         <style jsx>
           {`
             .layout {
               z-index:1
               background-color: #000 !important;
             }
-            .post-content{
-              z-index:1
+            .post-container{
+              z-index: 1
+            }
+           .guide-border{
+              border:.75rem #000 solid
+            }
+            .guide-img{
+              z-index: 2;
+              
+              min-width: 19.6875rem;
+            }
+            .guide-img img{
+              z-index: 1;
+              max-height:20rem;
+              object-fit: contain;
+            }
+            .guide-content{
+              background-color: #f5deb3
             }
           `}
         </style>
         <div className="h-100 pt-3 d-flex flex-column">
-          <div>
-            <a className="btn btn-outline-light" href="/moi-guides">
-              back
-            </a>
-          </div>
-          <br />
-          <div className=" h-100 p-5 post-content container">
-            <div className="text-center border border-white">
-              <img className="mx-auto" src={photoURL} alt="Post IMG" />
+          <div className=" h-100 post-container container">
+            <div>
+              <a className="btn btn-outline-light mb-2" href="/moi-guides">
+                Go Back
+              </a>
+            </div>
+            <div className="guide-img guide-border mb-5 text-center bg-white">
+              <img className="" src={photoURL} alt="Post IMG" />
             </div>
 
-            <h1>{title}</h1>
-            <h4>Written By {displayName}</h4>
-            <p>{date}</p>
-            <p>Category{category}</p>
-            <p>{content}</p>
+            <div className="guide-content guide-border text-dark p-5 my-5">
+              <div className="mb-3">
+                <h1>
+                  {"▪ "}
+                  {title}
+                </h1>
+                <h6>
+                  By {displayName}
+                  <br />
+                  {"▪ "}
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">{date}</Moment>
+                </h6>
+                <p>Category: {category}</p>
+              </div>
+
+              <div>
+                <p>
+                  {"▪ "}
+                  {content}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Router from "next/router";
 import Moment from "react-moment";
+import { MoiButton } from "../../src/components/common";
 export default class extends Component {
   static getInitialProps({
     query: {
@@ -96,15 +97,18 @@ export default class extends Component {
         <div className="h-100 pt-3 d-flex flex-column">
           <div className=" h-100 post-container container">
             <div>
-              <a className="btn btn-outline-light mb-2" href="/moi-guides">
+              <MoiButton btnStyle={"btn-outline-light mb-2"}>
+                <a href="/moi-guides">Go Back</a>
+              </MoiButton>
+              {/* <a className="btn btn-outline-light mb-2" href="/moi-guides">
                 Go Back
-              </a>
+              </a> */}
             </div>
             <div className="guide-img guide-border mb-5 text-center bg-white">
-              <img className="" src={photoURL} alt="Post IMG" />
+              <img className="p-3" src={photoURL} alt="Post IMG" />
             </div>
 
-            <div className="guide-content guide-border text-dark p-5 my-5">
+            <div className="guide-content guide-border text-dark px-4 px-sm-5 py-5 my-5">
               <div className="mb-3">
                 <h1>
                   {"▪ "}
@@ -118,11 +122,11 @@ export default class extends Component {
                 </h6>
                 <p>Category: {category}</p>
               </div>
-
+              <hr />
               <div>
                 <p>
-                  {"▪ "}
                   {content}
+                  {" ▪▪▪"}
                 </p>
               </div>
             </div>

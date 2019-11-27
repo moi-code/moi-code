@@ -20,7 +20,7 @@ const isActive = e => {
 const dashboardNav = auth => {
   if (auth)
     return (
-      <span className='d-flex flex-row'>
+      <span className='d-flex flex-column flex-lg-row'>
         <li onClick={isActive} className="nav-item">
           <a className="nav-link" href="/dashboard">
             Dashboard

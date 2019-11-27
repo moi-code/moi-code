@@ -92,13 +92,22 @@ export default class extends Component {
             .guide-content{
               background-color: #f5deb3
             }
+            .guide .fnt-white:hover{
+              color:#000 !important;
+            }
           `}
         </style>
         <div className="h-100 pt-3 d-flex flex-column">
           <div className=" h-100 post-container container">
             <div>
-              <MoiButton btnStyle={"btn-outline-light mb-2"}>
-                <a href="/moi-guides">Go Back</a>
+              <MoiButton
+                onPress={() => {
+                  Router.push("/moi-guides");
+                }}
+                btnStyle="btn-outline-light mb-2 fnt-white"
+              >
+                {/* <a className='fnt-white h-100 w-100' href="/moi-guides">&lsaquo;</a> */}
+                &lsaquo;
               </MoiButton>
               {/* <a className="btn btn-outline-light mb-2" href="/moi-guides">
                 Go Back

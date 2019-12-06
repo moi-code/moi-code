@@ -9,6 +9,7 @@
 // module.exports = firebase;
 
 const firebase = require("firebase/app");
+require("firebase/analytics");
 const { getConfig } = require("next/config");
 
 var firebaseConfig = {

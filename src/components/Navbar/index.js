@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
+import { userLogout } from "./../../actions/";
 const buttonClick = e => {
   document.querySelector(".collapse").classList.contains("show")
     ? document.querySelector(".collapse").classList.remove("show")
@@ -19,21 +20,31 @@ const isActive = e => {
 const dashboardNav = auth => {
   if (auth)
     return (
-      <li onClick={isActive} className="nav-item">
-        <a className="nav-link" href="/dashboard">
-          Dashboard
-        </a>
-      </li>
+      <span className='d-flex flex-column flex-lg-row'>
+        <li onClick={isActive} className="nav-item">
+          <a className="nav-link" href="/dashboard">
+            Dashboard
+          </a>
+        </li>
+        <li onClick={userLogout()} className="nav-item">
+          <a className="nav-link" href="/">
+            Logout
+          </a>
+        </li>
+      </span>
     );
 };
-const Nav = ({ authed }) => (
+const Nav = ({ authed, userLogout }) => (
   <span>
     <style jsx>{`
+      .navbar {
+        z-index: 300;
+      }
       .moidash-body {
         margin-left: 11.125rem;
       }
     `}</style>
-    <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
       <Link href="/">
         <a className="navbar-brand">Moi Code</a>
       </Link>
@@ -68,7 +79,7 @@ const Nav = ({ authed }) => (
               Live
             </a>
           </li>
-          {dashboardNav(authed)}
+          {dashboardNav(authed, userLogout)}
         </ul>
         <span className="navbar-text text-capitalize">
           {"<"}Where Creation Happens{">"}
@@ -80,4 +91,4 @@ const Nav = ({ authed }) => (
 const mapStateToProps = state => ({
   authed: state.AuthReducer.authed
 });
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, { userLogout })(Nav);

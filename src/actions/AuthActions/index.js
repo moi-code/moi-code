@@ -50,7 +50,6 @@ export const handleAuth = () => dispatch => {
     if (user !== null) {
       const { displayName, email, photoURL, uid } = user;
       // ...
-      console.log(photoURL);
       await dispatch({
         type: AUTHORIZED,
         payload: { authed: true }
@@ -81,7 +80,6 @@ export const handleAuth = () => dispatch => {
     }
   });
 };
-
 export const updateUser = payload => dispatch => {
   var user = firebase.auth().currentUser;
 
@@ -105,4 +103,14 @@ export const updateUser = payload => dispatch => {
         });
       });
   }
+};
+
+export const userLogout = () => dispatch => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {})
+    .catch((err) => {
+      console.log(err)
+    });
 };

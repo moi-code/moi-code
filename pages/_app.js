@@ -23,9 +23,13 @@ class MoiCode extends App {
         >
           <div className="h-100">
             <Head>
+              <script
+                src="https://kit.fontawesome.com/59a68cff2e.js"
+                crossorigin="anonymous"
+              ></script>
               <link rel="manifest" href="/manifest.json" />
               <link rel="shortcut icon" href="/favicon.ico" />
-              <title>Moi Code</title>
+              <title>Moi Code 🍄🐱‍💻</title>
             </Head>
             <Layout>
               <Component {...pageProps} />

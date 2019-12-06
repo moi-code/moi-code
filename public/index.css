@@ -22,6 +22,9 @@ body > div {
 .fnt-white {
   color: #fff !important;
 }
+.fnt-black{
+  color:#000!important;
+}
 .layout {
   height: calc(100% - 7.1rem);
 }

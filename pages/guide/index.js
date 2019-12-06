@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import firebase from "../../public/firebase/firebase.client";
-import "firebase/auth";
-import "firebase/firestore";
-const db = firebase.firestore();
+import Router from "next/router";
+import Moment from "react-moment";
+import { MoiButton } from "../../src/components/common";
 export default class extends Component {
   static getInitialProps({
     query: {
@@ -13,7 +12,8 @@ export default class extends Component {
       displayName,
       photoURL,
       title,
-      uid
+      uid,
+      id
     }
   }) {
     return {
@@ -24,10 +24,35 @@ export default class extends Component {
       displayName: displayName,
       photoURL: photoURL,
       title: title,
-      uid: uid
+      uid: uid,
+      id: id
     };
   }
-
+  componentDidMount() {
+    const {
+      category,
+      content,
+      date,
+      description,
+      displayName,
+      photoURL,
+      title,
+      uid,
+      id
+    } = this.props;
+    if (
+      category == undefined &&
+      content == undefined &&
+      date == undefined &&
+      description == undefined &&
+      displayName == undefined &&
+      photoURL == undefined &&
+      title == undefined &&
+      uid == undefined &&
+      id == undefined
+    )
+      Router.push("/moi-guides");
+  }
   render() {
     const {
       category,
@@ -37,20 +62,85 @@ export default class extends Component {
       displayName,
       photoURL,
       title,
-      uid
+      uid,
+      id
     } = this.props;
     return (
-      <div id={uid} className='h-100'>
-        <img src={photoURL} alt="Post IMG" />
-        <h1>{title}</h1>
-        <h4>By {displayName}</h4>
-        <p>{date}</p>
-        <p>{category}</p>
-        <p>{content}</p>
-        <br/>
-        <a className='btn btn-outline-dark' onClick={()=>{
-          window.history.back();
-        }}>back</a>
+      <div id={id} className="h-100 guide">
+        <style jsx>
+          {`
+            .layout {
+              z-index:1
+              background-color: #000 !important;
+            }
+            .post-container{
+              z-index: 1
+            }
+           .guide-border{
+              border:.75rem #000 solid
+            }
+            .guide-img{
+              z-index: 2;
+              
+              min-width: 19.6875rem;
+            }
+            .guide-img img{
+              z-index: 1;
+              max-height:20rem;
+              object-fit: contain;
+            }
+            .guide-content{
+              background-color: #f5deb3
+            }
+            .guide .fnt-white:hover{
+              color:#000 !important;
+            }
+          `}
+        </style>
+        <div className="h-100 pt-3 d-flex flex-column">
+          <div className=" h-100 post-container container">
+            <div>
+              <MoiButton
+                onPress={() => {
+                  Router.push("/moi-guides");
+                }}
+                btnStyle="btn-outline-light mb-2 fnt-white"
+              >
+                {/* <a className='fnt-white h-100 w-100' href="/moi-guides">&lsaquo;</a> */}
+                &lsaquo;
+              </MoiButton>
+              {/* <a className="btn btn-outline-light mb-2" href="/moi-guides">
+                Go Back
+              </a> */}
+            </div>
+            <div className="guide-img guide-border mb-5 text-center bg-white">
+              <img className="p-3" src={photoURL} alt="Post IMG" />
+            </div>
+
+            <div className="guide-content guide-border text-dark px-4 px-sm-5 py-5 my-5">
+              <div className="mb-3">
+                <h1>
+                  {"▪ "}
+                  {title}
+                </h1>
+                <h6>
+                  By {displayName}
+                  <br />
+                  {"▪ "}
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">{date}</Moment>
+                </h6>
+                <p>Category: {category}</p>
+              </div>
+              <hr />
+              <div>
+                <p>
+                  {content}
+                  {" ▪▪▪"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

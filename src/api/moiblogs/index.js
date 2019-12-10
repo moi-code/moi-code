@@ -58,7 +58,7 @@ module.exports = (app, server) => {
       });
   });
 
-  server.get('/blog', async (req, res) => {
-    await getMoiBlogs(req, res, app);
+  server.get('/blog', (req, res) => {
+    getMoiBlogs(req, res, app);
   });
 };

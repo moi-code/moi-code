@@ -1,4 +1,4 @@
-var admin = require("firebase-admin");
+var admin = require('firebase-admin');
 
 // var serviceAccount = require("../moi-code-firebase.json");
 
@@ -8,9 +8,8 @@ var admin = require("firebase-admin");
 // });
 // module.exports = firebase;
 
-const firebase = require("firebase/app");
-require("firebase/analytics");
-const { getConfig } = require("next/config");
+const firebase = require('firebase/app');
+const { getConfig } = require('next/config');
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -20,7 +19,7 @@ var firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
   appId: process.env.REACT_APP_APPID,
-  measurementId: process.env.REACT_APP_MEASUREMENTID
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

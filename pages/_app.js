@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 
 import Layout from '../src/components/Layout';
 import store from '../src/store';
-import firebase from '../public/firebase/firebase.client';
+import firebase from 'firebase/app';
+import 'firebase/analytics';
 import withReduxStore from '../src/with-redux-store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';

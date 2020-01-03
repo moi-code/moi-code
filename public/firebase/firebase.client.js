@@ -15,7 +15,7 @@ var firebaseConfig = publicRuntimeConfig || {
 export { firebaseConfig };
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics().logEvent('notification_received');
+
 }
 
 export default firebase;

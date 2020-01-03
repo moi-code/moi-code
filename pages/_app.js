@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import Layout from '../src/components/Layout';
 import store from '../src/store';
+import firebase from '../public/firebase/firebase.client';
 import withReduxStore from '../src/with-redux-store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -15,7 +16,8 @@ class MoiCode extends App {
   }
 
   render() {
-    const { Component, pageProps, reduxStore,  } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
+    firebase.analytics().logEvent('notification_received');
     return (
       <Provider store={reduxStore}>
         <PersistGate

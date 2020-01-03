@@ -1,7 +1,10 @@
-import React, { Component } from "react";
-import "./github.css";
-export default class extends Component {
+import React, { Component } from 'react';
+import './github.css';
+import { connect } from 'react-redux';
+import { updateState } from '../../src/actions/GeneralActions';
+class Github extends Component {
   static async getInitialProps({ query }) {
+    const isServer = typeof window === 'undefined';
     return {
       login: query.githubData.login,
       avatarUrl: query.githubData.avatarUrl,
@@ -10,7 +13,8 @@ export default class extends Component {
       isBountyHunter: query.githubData.isBountyHunter,
       organizations: query.githubData.organizations,
       starredRepositories: query.githubData.starredRepositories,
-      watching: query.githubData.watching
+      watching: query.githubData.watching,
+      isServer,
     };
   }
   render() {
@@ -22,8 +26,11 @@ export default class extends Component {
       isBountyHunter,
       organizations,
       starredRepositories,
-      watching
+      watching,
+      isServer,
+      updateState,
     } = this.props;
+    updateState('isServer', isServer);
     return (
       <div className="container mx-auto my-5 p-3 border border-dark">
         <style jsx>{`
@@ -96,3 +103,4 @@ export default class extends Component {
     );
   }
 }
+export default connect(null, { updateState })(Github);

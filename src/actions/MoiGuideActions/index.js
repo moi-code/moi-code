@@ -39,6 +39,6 @@ export const getMoiGuide = payload => dispatch => {
   const { category, id } = payload;
 
   // Router.push(
-  //   `/moi-guides/${category}/${id}`
+  //   `/guides/${category}/${id}`
   // );
 };

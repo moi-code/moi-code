@@ -1,20 +1,21 @@
-import Router from "next/router";
-import React, { Component } from "react";
-import Navbar from "../Navbar";
-import firebase from "../../../public/firebase/firebase.client";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../../public/index.css";
-import "../../../public/fonts.css";
+import Router from 'next/router';
+import React, { Component } from 'react';
+import Navbar from '../Navbar';
+import firebase from '../../../public/firebase/firebase.client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../../public/index.css';
+import '../../../public/fonts.css';
 // import "../../../public/bootstrap.bundle";
-import "jquery/dist/jquery.min";
-import { connect } from "react-redux";
-import { handleAuth } from "../../actions";
-import Footer from "../Footer";
+import 'jquery/dist/jquery.min';
+import { connect } from 'react-redux';
+import { handleAuth } from '../../actions';
+import Footer from '../Footer';
 class Layout extends Component {
   constructor(props) {
     super(props);
     props.handleAuth();
   }
+
   render() {
     const { children } = this.props;
 
@@ -26,7 +27,7 @@ class Layout extends Component {
           body > div {
             height: 100%;
             /* Gotham ScreenSmart Light */
-            font-family: "MoiGoth", "MoiGotha", monospace;
+            font-family: 'MoiGoth', 'MoiGotha', monospace;
             font-style: normal;
             font-weight: 300;
             background-color: #eee;
@@ -46,7 +47,7 @@ class Layout extends Component {
             color: #fff !important;
           }
           .layout {
-            overflow-y:scroll;
+            overflow-y: scroll;
             z-index: 1;
             height: calc(100% - 7.1rem);
           }
@@ -63,22 +64,20 @@ class Layout extends Component {
         <Navbar />
         <div
           onClick={() => {
-            document.querySelector(".collapse").classList.contains("show")
-              ? document.querySelector(".collapse").classList.remove("show")
+            document.querySelector('.collapse').classList.contains('show')
+              ? document.querySelector('.collapse').classList.remove('show')
               : null;
           }}
-          className="layout container-fluid bg-dark fnt-white  d-flex flex-column justify-content-between"
-        >
+          className="layout container-fluid bg-dark fnt-white  d-flex flex-column justify-content-between">
           {children}
-
         </div>
-          <Footer />
+        <Footer />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  authed: state.AuthReducer.authed
+  authed: state.AuthReducer.authed,
 });
 export default connect(mapStateToProps, { handleAuth })(Layout);

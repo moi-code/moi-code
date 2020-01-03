@@ -33,8 +33,8 @@ if (process.env.NODE_ENV !== 'backend') {
     require('./live')(app, server);
     require('./dashboard')(app, server);
 
-    require('./moiguides')(app, server);
-    require('./moiblogs')(app, server);
+    require('./guides')(app, server);
+    require('./blogs')(app, server);
     /**
      * @protected - Do not remove
      * @requires Server

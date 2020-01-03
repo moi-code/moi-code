@@ -69,8 +69,8 @@ const Nav = ({ authed, userLogout }) => (
             </Link>
           </li>
           <li onClick={isActive} className="nav-item">
-            <a className="nav-link" href="/moi-guides">
-              Moi Guides
+            <a className="nav-link" href="/guides">
+              Guides
             </a>
           </li>
           <li onClick={isActive} className="nav-item">

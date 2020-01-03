@@ -33,7 +33,7 @@ module.exports = (req, res, app) => {
         guides.push(guideData);
       });
       const queryParams = { guides: guides };
-      return ssrCache({ req, res, pagePath: "/moi-guides", queryParams });
+      return ssrCache({ req, res, pagePath: "/guides", queryParams });
     },
     function(error) {
       //...

@@ -1,10 +1,10 @@
-const cacheableResponse = require('cacheable-response');
+const cacheableResponse = require("cacheable-response");
 
-const firebase = require('../../../public/firebase/firebase.server');
-require('firebase/auth');
-require('firebase/firestore');
+const firebase = require("../../../public/firebase/firebase.server");
+require("firebase/auth");
+require("firebase/firestore");
 
-const getMoiBlogs = require('./getMoiBlogs');
+const getMoiGuides = require("./getGuides");
 
 const db = firebase.firestore();
 
@@ -12,14 +12,14 @@ module.exports = (app, server) => {
   const ssrCache = cacheableResponse({
     ttl: 250 * 60 * 60, // 1hour
     get: async ({ req, res, pagePath, queryParams }) => ({
-      data: await app.renderToHTML(req, res, pagePath, queryParams),
+      data: await app.renderToHTML(req, res, pagePath, queryParams)
     }),
-    send: ({ data, res }) => res.send(data),
+    send: ({ data, res }) => res.send(data)
   });
 
-  server.get('/blog/:id', (req, res) => {
+  server.get("/page/:id", (req, res) => {
     const { id } = req.params;
-    var docRef = db.collection('Blog').doc(id);
+    var docRef = db.collection("Guide").doc(id);
 
     docRef
       .get()
@@ -33,7 +33,7 @@ module.exports = (app, server) => {
             displayName,
             photoURL,
             title,
-            uid,
+            uid
           } = doc.data();
           const queryParams = {
             category,
@@ -44,21 +44,21 @@ module.exports = (app, server) => {
             photoURL,
             title,
             uid,
-            id,
+            id
           };
-          return ssrCache({ req, res, pagePath: '/blog', queryParams });
+          return ssrCache({ req, res, pagePath: "/page", queryParams });
         } else {
           // doc.data() will be undefined in this case
-          console.log('No such document!');
-          return ssrCache({ req, res, pagePath: '/blog' });
+          console.log("No such document!");
+          return ssrCache({ req, res, pagePath: "/guides" });
         }
       })
       .catch(function(error) {
-        console.log('Error getting document:', error);
+        console.log("Error getting document:", error);
       });
   });
 
-  server.get('/blog', (req, res) => {
-    getMoiBlogs(req, res, app);
+  server.get("/guides", async (req, res) => {
+    await getMoiGuides(req, res, app);
   });
 };

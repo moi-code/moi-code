@@ -51,7 +51,7 @@ export default class extends Component {
       uid == undefined &&
       id == undefined
     )
-      Router.push("/moi-guides");
+      Router.push("/guides");
   }
   render() {
     const {
@@ -102,14 +102,14 @@ export default class extends Component {
             <div>
               <MoiButton
                 onPress={() => {
-                  Router.push("/moi-guides");
+                  Router.push("/guides");
                 }}
                 btnStyle="btn-outline-light mb-2 fnt-white"
               >
-                {/* <a className='fnt-white h-100 w-100' href="/moi-guides">&lsaquo;</a> */}
+                {/* <a className='fnt-white h-100 w-100' href="/guides">&lsaquo;</a> */}
                 &lsaquo;
               </MoiButton>
-              {/* <a className="btn btn-outline-light mb-2" href="/moi-guides">
+              {/* <a className="btn btn-outline-light mb-2" href="/guides">
                 Go Back
               </a> */}
             </div>

@@ -4660,10 +4660,10 @@ precacheAndRoute([{
   "url": "_next/static/development/pages/_error.js.map",
   "revision": "59e2945435757f3db3eaf30140121c8c"
 }, {
-  "url": "_next/static/development/pages/moiguides.js",
+  "url": "_next/static/development/pages/guides.js",
   "revision": "da2fc71c4356decc99b9346bc8d5dcae"
 }, {
-  "url": "_next/static/development/pages/moiguides.js.map",
+  "url": "_next/static/development/pages/guides.js.map",
   "revision": "cf1882b084868b3ab2e4f0260e692e0b"
 }, {
   "url": "_next/static/runtime/amp.js",
